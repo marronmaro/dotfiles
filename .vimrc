@@ -330,3 +330,18 @@ let g:ale_open_list = 1
 
 "Signエリアを表示するか
 let g:ale_set_signs=0
+
+
+"[vim-go]
+"Go言語のメソッドをハイライト
+let g:go_highlight_methods = 1
+"Go言語の構造体をハイライト
+let g:go_highlight_structs = 1
+"Go言語の関数をハイライト
+let g:go_highlight_functions = 1
+"Build Constraintsをハイライト
+"コメントブロックでOSによってビルドするか判断するもの
+let g:go_highlight_build_constraints = 1
+
+
+
