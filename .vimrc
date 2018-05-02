@@ -61,6 +61,10 @@ call dein#add('posva/vim-vue')
 "EasyMotion
 call dein#add('Lokaltog/vim-easymotion')
 
+"Goの開発環境用
+"GoInstallBinariesの実行が必要
+call dein#add('fatih/vim-go')
+
 call dein#end()
 
 call dein#save_state()
