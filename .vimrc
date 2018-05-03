@@ -234,7 +234,7 @@ augroup group
     autocmd InsertLeave * set nopaste
 
     "Grepを実行した時にquickfixを自動起動させる
-    autocmd QuickFixCmdPost *grep* cwindow
+    autocmd QuickFixCmdPost make,grep,grepadd,vimgrep copen
 
     "全角スペースの可視化
     autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
