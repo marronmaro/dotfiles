@@ -71,6 +71,9 @@ call dein#add('kannokanno/previm')
 "vimからブラウザを開くプラグイン
 call dein#add('tyru/open-browser.vim')
 
+"vimからGitを操作するプラグイン
+call dein#add('tpope/vim-fugitive')
+
 call dein#end()
 
 call dein#save_state()
