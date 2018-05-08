@@ -61,9 +61,15 @@ call dein#add('posva/vim-vue')
 "EasyMotion
 call dein#add('Lokaltog/vim-easymotion')
 
-"Goの開発環境用
+"Goの開発環境用のプラグイン
 "GoInstallBinariesの実行が必要
 call dein#add('fatih/vim-go')
+
+"markdownプレビュー用のプラグイン
+call dein#add('kannokanno/previm')
+
+"vimからブラウザを開くプラグイン
+call dein#add('tyru/open-browser.vim')
 
 call dein#end()
 
@@ -342,6 +348,3 @@ let g:go_highlight_functions = 1
 "Build Constraintsをハイライト
 "コメントブロックでOSによってビルドするか判断するもの
 let g:go_highlight_build_constraints = 1
-
-
-
