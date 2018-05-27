@@ -53,7 +53,7 @@ call dein#add('w0rp/ale')
 "call dein#add('Shougo/unite.vim')
 
 "ファイル検索用のプラグイン
-"call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('ctrlpvim/ctrlp.vim')
 
 "vue用プラグイン
 call dein#add('posva/vim-vue')
@@ -153,7 +153,7 @@ set backspace=indent,eol,start
 set backupcopy=yes
 
 "バックアップファイルを作らない
-set nobackup
+"set nobackup
 
 "swapファイルの保存先を変更
 set directory=/tmp
