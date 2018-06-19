@@ -53,7 +53,7 @@ call dein#add('w0rp/ale')
 "call dein#add('Shougo/unite.vim')
 
 "ファイル検索用のプラグイン
-call dein#add('ctrlpvim/ctrlp.vim')
+"call dein#add('ctrlpvim/ctrlp.vim')
 
 "vue用プラグイン
 call dein#add('posva/vim-vue')
@@ -190,6 +190,8 @@ set noerrorbells
 
 "ビープ音を音ではなく視覚表示and表示内容が空なら何もしない
 set vb t_vb=
+
+set wildmode=list:longest
 
 "改行等の情報可視化
 "set list
