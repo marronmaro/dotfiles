@@ -191,7 +191,8 @@ set noerrorbells
 "ビープ音を音ではなく視覚表示and表示内容が空なら何もしない
 set vb t_vb=
 
-set wildmode=list:longest
+"set wildmode=list:full
+"set wildmode=list:longest
 
 "改行等の情報可視化
 "set list
