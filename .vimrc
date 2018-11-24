@@ -36,6 +36,9 @@ call dein#add('itchyny/vim-gitbranch')
 "カラースキーマ
 call dein#add('tomasr/molokai')
 
+"call dein#add('sonph/onehalf')
+
+call dein#add('aereal/vim-colors-japanesque')
 "call dein#add('dracula/vim')
 
 "call dein#add('sonph/onehalf')
@@ -73,6 +76,12 @@ call dein#add('tyru/open-browser.vim')
 
 "vimからGitを操作するプラグイン
 call dein#add('tpope/vim-fugitive')
+
+"ditorconfig-vim
+call dein#add('editorconfig/editorconfig-vim')
+
+"GraphQLハイライト用プラグイン
+call dein#add('jparise/vim-graphql')
 
 call dein#end()
 
@@ -141,6 +150,9 @@ set softtabstop=4
 "自動インデントを有効化
 set autoindent
 
+"ファイルに変更があった場合にvimをリロード
+set autoread
+
 "カーソル行に背景を指定
 set cursorline
 
@@ -198,6 +210,7 @@ set vb t_vb=
 "set list
 
 "可視化情報の変更
+"set listchars="tab:_"
 "set listchars=tab:>-,precedes:<,extends:>,eol:↲
 
 "ファイル変更中に他のファイルを開けるようにする
@@ -205,6 +218,9 @@ set hidden
 
 "長い行を@にしない
 set display=lastline
+
+"True Colorでのハイライトを使用
+set termguicolors
 
 "CUIの場合は256色を有効
 if !has('gui_running')
@@ -216,16 +232,16 @@ inoremap <silent> jj <ESC>
 
 "カラースキーマの設定
 colorscheme molokai
-
+"colorscheme japanesque
 "color dracula
 
 "[molokai]設定
 "背景が修正
-set background=dark
+"set background=dark
 
-let g:molokai_original = 1
+"let g:molokai_original = 1
 
-let g:rehash256 = 1
+"let g:rehash256 = 1
 
 "検索結果が画面中央に来るようスクロール
 nmap n nzz
@@ -291,7 +307,7 @@ let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors = 0
 
 "奇数インデントのカラー
-hi IndentGuidesOdd ctermbg=234
+"hi IndentGuidesOdd ctermbg=234
 
 " 偶数インデントのカラー
 hi IndentGuidesEven ctermbg=235
@@ -303,7 +319,7 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "hi CursorLine cterm=NONE ctermfg=NONE ctermbg=235
 
 "コメントの色を変更
-hi Comment cterm=NONE ctermfg=244
+"hi Comment cterm=NONE ctermfg=244
 
 "[ALEの設定]
 "基本的に重いので手動で:ALELintを手動で実行する運用にした
