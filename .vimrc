@@ -50,13 +50,13 @@ call dein#add('captbaritone/better-indent-support-for-php-with-html')
 call dein#add('nathanaelkane/vim-indent-guides')
 
 "Lintを実行するためのプラグイン
-call dein#add('w0rp/ale')
+"call dein#add('w0rp/ale')
 
 "統合環境を作るためのプラグイン
 "call dein#add('Shougo/unite.vim')
 
 "ファイル検索用のプラグイン
-"call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('ctrlpvim/ctrlp.vim')
 
 "vue用プラグイン
 call dein#add('posva/vim-vue')
@@ -104,20 +104,20 @@ function! DeleteLastSpace()
 endfunction
 
 "LintのWarningをステータスバーに表示する
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('▲%d', all_non_errors)
-endfunction
+"function! LightlineLinterWarnings() abort
+"  let l:counts = ale#statusline#Count(bufnr(''))
+"  let l:all_errors = l:counts.error + l:counts.style_error
+"  let l:all_non_errors = l:counts.total - l:all_errors
+"  return l:counts.total == 0 ? '' : printf('▲%d', all_non_errors)
+"endfunction
 
 "LintのErrorをステータスバーに表示する
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('✖︎ %d', all_errors)
-endfunction
+"function! LightlineLinterErrors() abort
+"  let l:counts = ale#statusline#Count(bufnr(''))
+"  let l:all_errors = l:counts.error + l:counts.style_error
+"  let l:all_non_errors = l:counts.total - l:all_errors
+"  return l:counts.total == 0 ? '' : printf('✖︎ %d', all_errors)
+"endfunction
 
 "[基本設定]
 "シンタックスハイライトを有効化
@@ -125,6 +125,9 @@ syntax enable
 
 "内部文字コード
 set encoding=utf-8
+
+"行間を変更(GUIのみ)
+"set linespace=10
 
 "文字コードの自動判別
 set fileencodings=utf-8,cp932,euc-jp,iso-20220-jp,default,latin
@@ -154,7 +157,7 @@ set autoindent
 set autoread
 
 "カーソル行に背景を指定
-set cursorline
+"set cursorline
 
 "スクロール時のバッファ行数
 set scrolloff=8
@@ -251,6 +254,11 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
+
 "Escを押した際にIMEを無効化する
 "MacでGoogle日本語入力を仕様している場合は、Google日本語の設定でESCを押した時にIMEを無効化する設定をする
 
@@ -325,39 +333,39 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "基本的に重いので手動で:ALELintを手動で実行する運用にした
 
 "常にエラー表示エリアを常に表示するか
-let g:ale_sign_column_always = 0
+"let g:ale_sign_column_always = 0
 
 "PHPのphpcs実行時のstandardオプションを指定
-let s:phpcs_standard = 'PSR2'
-let s:phpcs_ruleset_filename = 'phpcs_ruleset.xml'
-if filereadable(getcwd() . '/' . s:phpcs_ruleset_filename)
-    let s:phpcs_standard = s:phpcs_ruleset_filename
-endif
-let g:ale_php_phpcs_standard=s:phpcs_standard
+"let s:phpcs_standard = 'PSR2'
+"let s:phpcs_ruleset_filename = 'phpcs_ruleset.xml'
+"if filereadable(getcwd() . '/' . s:phpcs_ruleset_filename)
+"    let s:phpcs_standard = s:phpcs_ruleset_filename
+"endif
+"let g:ale_php_phpcs_standard=s:phpcs_standard
 
 "ロケーションリストを使用するか
-let g:ale_set_loclist = 0
+"let g:ale_set_loclist = 0
 
 "ロケーションリストの代わりにquickfixを使用するか
-let g:ale_set_quickfix = 1
+"let g:ale_set_quickfix = 1
 
 "保存時に規約チェックを実行するか
-let g:ale_lint_on_save = 0
+"let g:ale_lint_on_save = 0
 
 "テキスト変更時に規約チェックを実行するか
-let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_text_changed = 'never'
 
 "ファイルオープン時に規約チェックを実行するか
-let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_enter = 0
 
 "ファイルタイプが変更された時に規約チェックを実行するか
-let g:ale_lint_on_filetype_changed = 0
+"let g:ale_lint_on_filetype_changed = 0
 
 "Lint実行時にエラー一覧を表示するか
-let g:ale_open_list = 1
+"let g:ale_open_list = 1
 
 "Signエリアを表示するか
-let g:ale_set_signs=0
+"let g:ale_set_signs=0
 
 
 "[vim-go]
