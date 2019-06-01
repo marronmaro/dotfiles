@@ -83,14 +83,6 @@ call dein#add('editorconfig/editorconfig-vim')
 "GraphQLハイライト用プラグイン
 call dein#add('jparise/vim-graphql')
 
-call dein#add('leafgarland/typescript-vim')
-
-"LSPを使用するためのプラグイ
-"call dein#add('prabirshrestha/asyncomplete.vim')
-call dein#add('prabirshrestha/async.vim')
-call dein#add('prabirshrestha/vim-lsp')
-"call dein#add('prabirshrestha/asyncomplete-lsp.vim')
-
 call dein#end()
 
 call dein#save_state()
@@ -284,7 +276,7 @@ augroup group
     autocmd BufNewFile,BufRead * match ZenkakuSpace /　/
 
     "PHP辞書を設定
-    "autocmd FileType php :set dictionary=~/.vim/dict/php.dict
+    autocmd FileType php :set dictionary=~/.vim/dict/php.dict
 
     "末尾の余分なスペースを削除
     autocmd BufWritePre *.php call DeleteLastSpace()
@@ -295,21 +287,7 @@ augroup group
 
     "vueのハイライトがうまくいかないことがある
     autocmd FileType vue syntax sync fromstart
-    "autocmd FileType vue syntax sync minlines=500 maxlines=1000
 
-augroup END
-
-
-augroup lsp
-   "PHP
-   if executable('node')
-       au User lsp_setup call lsp#register_server({
-        \ 'name': 'intelephense',
-        \ 'cmd': {server_info->['node', expand('PATH_TO_GLOBAL_NODE_MODULES/intelephense/lib/intelephense.js'), '--stdio']},
-        \ 'initialization_options': {"storagePath": "PATH_TO_TEMP_FOLDER/intelephense"},
-        \ 'whitelist': ['php'],
-        \ })
-    endif
 augroup END
 
 
