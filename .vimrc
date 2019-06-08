@@ -50,7 +50,8 @@ call dein#add('captbaritone/better-indent-support-for-php-with-html')
 call dein#add('nathanaelkane/vim-indent-guides')
 
 "Lintを実行するためのプラグイン
-"call dein#add('w0rp/ale')
+" npm install -g eslint
+call dein#add('w0rp/ale')
 
 "統合環境を作るためのプラグイン
 "call dein#add('Shougo/unite.vim')
@@ -112,20 +113,20 @@ function! DeleteLastSpace()
 endfunction
 
 "LintのWarningをステータスバーに表示する
-"function! LightlineLinterWarnings() abort
-"  let l:counts = ale#statusline#Count(bufnr(''))
-"  let l:all_errors = l:counts.error + l:counts.style_error
-"  let l:all_non_errors = l:counts.total - l:all_errors
-"  return l:counts.total == 0 ? '' : printf('▲%d', all_non_errors)
-"endfunction
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('▲%d', all_non_errors)
+endfunction
 
 "LintのErrorをステータスバーに表示する
-"function! LightlineLinterErrors() abort
-"  let l:counts = ale#statusline#Count(bufnr(''))
-"  let l:all_errors = l:counts.error + l:counts.style_error
-"  let l:all_non_errors = l:counts.total - l:all_errors
-"  return l:counts.total == 0 ? '' : printf('✖︎ %d', all_errors)
-"endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('✖︎ %d', all_errors)
+endfunction
 
 "[基本設定]
 "シンタックスハイライトを有効化
@@ -319,8 +320,8 @@ let g:lightline = {
     \'colorscheme': 'wombat',
     \ 'active': {
         \'left': [ [ 'mode', 'paste' ],
-            \[ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-        \'right': [['lineinfo'], ['percent'], ['readonly'], ['fileformat', 'fileencoding', 'filetype'], ['linter_warnings', 'linter_errors']]
+            \[ 'gitbranch', 'readonly', 'filename', 'linter_warnings', 'linter_errors', 'modified' ] ],
+        \'right': [['lineinfo'], ['percent'], ['readonly'], ['fileformat', 'fileencoding', 'filetype']]
     \},
     \'component_function': {
     \   'gitbranch': 'gitbranch#name',
@@ -352,10 +353,14 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "hi Comment cterm=NONE ctermfg=244
 
 "[ALEの設定]
-"基本的に重いので手動で:ALELintを手動で実行する運用にした
+let g:ale_linter_aliases = {}
+let g:ale_linter_aliases['vue'] = ['vue', 'javascript']
+
+let g:ale_linters = {}
+let g:ale_linters['vue'] = ['eslint', 'vls']
 
 "常にエラー表示エリアを常に表示するか
-"let g:ale_sign_column_always = 0
+"let g:ale_sign_column_always = 1
 
 "PHPのphpcs実行時のstandardオプションを指定
 "let s:phpcs_standard = 'PSR2'
@@ -366,10 +371,10 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "let g:ale_php_phpcs_standard=s:phpcs_standard
 
 "ロケーションリストを使用するか
-"let g:ale_set_loclist = 0
+let g:ale_set_loclist = 0
 
 "ロケーションリストの代わりにquickfixを使用するか
-"let g:ale_set_quickfix = 1
+let g:ale_set_quickfix = 1
 
 "保存時に規約チェックを実行するか
 "let g:ale_lint_on_save = 0
@@ -384,11 +389,17 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "let g:ale_lint_on_filetype_changed = 0
 
 "Lint実行時にエラー一覧を表示するか
-"let g:ale_open_list = 1
+let g:ale_open_list = 0
 
 "Signエリアを表示するか
 "let g:ale_set_signs=0
 
+"自動整形の設定
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['eslint']
+
+"保存時に自動整形するか
+let g:ale_fix_on_save = 1
 
 "[vim-go]
 "Go言語のメソッドをハイライト
@@ -400,3 +411,4 @@ let g:go_highlight_functions = 1
 "Build Constraintsをハイライト
 "コメントブロックでOSによってビルドするか判断するもの
 let g:go_highlight_build_constraints = 1
+
