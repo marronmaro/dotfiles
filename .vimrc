@@ -353,8 +353,22 @@ hi ZenkakuSpace cterm=reverse ctermfg=9 guibg=#666666
 "hi Comment cterm=NONE ctermfg=244
 
 "[ALEの設定]
-let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
-let g:ale_linters = {'vue': ['eslint', 'vls']}
+let g:ale_linter_aliases = {
+    \'vue': ['vue', 'javascript']
+\}
+
+let g:ale_linters = {
+    \'vue': ['eslint', 'vls'],
+    \'javascript': ['eslint']
+\}
+
+"自動整形の設定
+"let g:ale_fixers = {
+"\   'javascript': ['eslint'],
+"\   'vue': ['eslint']
+"\}
+
+let g:ale_linters_explicit = 1
 
 "常にエラー表示エリアを常に表示するか
 "let g:ale_sign_column_always = 1
@@ -390,11 +404,6 @@ let g:ale_open_list = 1
 
 "Signエリアを表示するか
 "let g:ale_set_signs=0
-
-"自動整形の設定
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
 
 "保存時に自動整形するか
 let g:ale_fix_on_save = 1

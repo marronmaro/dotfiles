@@ -3,6 +3,7 @@ alias ls="ls -G"
 alias ll="ls -lG"
 alias la="ls -laG"
 alias rm="rm -i"
+alias cp="cp -i"
 alias grep='grep --color'
 alias fig="docker-compose"
 alias less='/usr/share/vim/vim80/macros/less.sh'
